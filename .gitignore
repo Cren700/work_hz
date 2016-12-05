@@ -9,3 +9,5 @@
 m.huzhu.com/application/cache/*
 a.huzhu.com/application/cache/*
 www.huzhu.com/application/cache/*
+system/config/development/config.php
+system/config/development/database.php
