@@ -1,13 +1,12 @@
 
-.idea/copyright/profiles_settings.xml
-.idea/modules.xml
-.idea/vcs.xml
-.idea/web.iml
-.idea/workspace.xml
-.idea/
+/idea/copyright/profiles_settings.xml
+/.idea/modules.xml
+/.idea/vcs.xml
+/.idea/web.iml
+/.idea/workspace.xml
 
-m.huzhu.com/application/cache/*
-a.huzhu.com/application/cache/*
-www.huzhu.com/application/cache/*
-system/config/development/config.php
-system/config/development/database.php
+/m.huzhu.com/application/cache/*
+/a.huzhu.com/application/cache/*
+/www.huzhu.com/application/cache/*
+/system/config/development/config.php
+/system/config/development/database.php
