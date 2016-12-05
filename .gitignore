@@ -1,5 +1,9 @@
 
-.idea/*
+.idea/copyright/profiles_settings.xml
+.idea/modules.xml
+.idea/vcs.xml
+.idea/web.iml
+.idea/workspace.xml
 
 m.huzhu.com/application/cache/*
 a.huzhu.com/application/cache/*
