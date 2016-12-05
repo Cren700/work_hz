@@ -211,4 +211,144 @@ $db['product'] = array(
     'save_queries' => TRUE
 );
 
+/**
+// 默认为用户库
+$db['default'] = array(
+    'dsn'	=> '',
+    'hostname' => 'localhost',
+    'username' => 'huzhu',
+    'password' => 'huzhu123',
+    'database' => 'USER_DB',
+    'dbdriver' => 'mysqli',
+    'dbprefix' => '',
+    'pconnect' => FALSE,
+    'db_debug' => (ENVIRONMENT !== 'production'),
+    'cache_on' => FALSE,
+    'cachedir' => '',
+    'char_set' => 'utf8',
+    'dbcollat' => 'utf8_general_ci',
+    'swap_pre' => '',
+    'encrypt' => FALSE,
+    'compress' => FALSE,
+    'stricton' => FALSE,
+    'failover' => array(),
+    'save_queries' => TRUE
+);
+
+// 通用库
+$db['common'] = array(
+    'dsn'	=> '',
+    'hostname' => 'localhost',
+    'username' => 'huzhu',
+    'password' => 'huzhu123',
+    'database' => 'COMMON_DB',
+    'dbdriver' => 'mysqli',
+    'dbprefix' => '',
+    'pconnect' => FALSE,
+    'db_debug' => (ENVIRONMENT !== 'production'),
+    'cache_on' => FALSE,
+    'cachedir' => '',
+    'char_set' => 'utf8',
+    'dbcollat' => 'utf8_general_ci',
+    'swap_pre' => '',
+    'encrypt' => FALSE,
+    'compress' => FALSE,
+    'stricton' => FALSE,
+    'failover' => array(),
+    'save_queries' => TRUE
+);
+
+// 配置库
+$db['config'] = array(
+    'dsn'	=> '',
+    'hostname' => 'localhost',
+    'username' => 'huzhu',
+    'password' => 'huzhu123',
+    'database' => 'CONFIG_DB',
+    'dbdriver' => 'mysqli',
+    'dbprefix' => '',
+    'pconnect' => FALSE,
+    'db_debug' => (ENVIRONMENT !== 'production'),
+    'cache_on' => FALSE,
+    'cachedir' => '',
+    'char_set' => 'utf8',
+    'dbcollat' => 'utf8_general_ci',
+    'swap_pre' => '',
+    'encrypt' => FALSE,
+    'compress' => FALSE,
+    'stricton' => FALSE,
+    'failover' => array(),
+    'save_queries' => TRUE
+);
+
+// 订单库
+$db['order'] = array(
+    'dsn'	=> '',
+    'hostname' => 'localhost',
+    'username' => 'huzhu',
+    'password' => 'huzhu123',
+    'database' => 'ORDER_DB',
+    'dbdriver' => 'mysqli',
+    'dbprefix' => '',
+    'pconnect' => FALSE,
+    'db_debug' => (ENVIRONMENT !== 'production'),
+    'cache_on' => FALSE,
+    'cachedir' => '',
+    'char_set' => 'utf8',
+    'dbcollat' => 'utf8_general_ci',
+    'swap_pre' => '',
+    'encrypt' => FALSE,
+    'compress' => FALSE,
+    'stricton' => FALSE,
+    'failover' => array(),
+    'save_queries' => TRUE
+);
+
+// PAY
+$db['pay'] = array(
+    'dsn'	=> '',
+    'hostname' => 'localhost',
+    'username' => 'huzhu',
+    'password' => 'huzhu123',
+    'database' => 'PAY_DB',
+    'dbdriver' => 'mysqli',
+    'dbprefix' => '',
+    'pconnect' => FALSE,
+    'db_debug' => (ENVIRONMENT !== 'production'),
+    'cache_on' => FALSE,
+    'cachedir' => '',
+    'char_set' => 'utf8',
+    'dbcollat' => 'utf8_general_ci',
+    'swap_pre' => '',
+    'encrypt' => FALSE,
+    'compress' => FALSE,
+    'stricton' => FALSE,
+    'failover' => array(),
+    'save_queries' => TRUE
+);
+
+// Product
+$db['product'] = array(
+    'dsn'	=> '',
+    'hostname' => 'localhost',
+    'username' => 'huzhu',
+    'password' => 'huzhu123',
+    'database' => 'PRODUCT_DB',
+    'dbdriver' => 'mysqli',
+    'dbprefix' => '',
+    'pconnect' => FALSE,
+    'db_debug' => (ENVIRONMENT !== 'production'),
+    'cache_on' => FALSE,
+    'cachedir' => '',
+    'char_set' => 'utf8',
+    'dbcollat' => 'utf8_general_ci',
+    'swap_pre' => '',
+    'encrypt' => FALSE,
+    'compress' => FALSE,
+    'stricton' => FALSE,
+    'failover' => array(),
+    'save_queries' => TRUE
+);
+ *
+ */
 //
