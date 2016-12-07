@@ -31,6 +31,7 @@ $config = array(
     'product_error_6' => array( 'code' => 20006, 'msg' => '产品详情已经存在'),                 // 产品详情已经存在
     'product_error_7' => array( 'code' => 20007, 'msg' => '添加产品详情出错'),                 // 添加产品详情出错
     'product_error_8' => array( 'code' => 20008, 'msg' => '更新产品详情出错'),                 // 更新产品详情出错
+    'product_error_9' => array( 'code' => 20009, 'msg' => '更新产品状态出错'),                 // 更新产品状态出错
     
 
 

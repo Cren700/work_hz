@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.19, created on 2016-12-04 17:50:57
+<?php /* Smarty version Smarty-3.1.19, created on 2016-12-06 20:47:20
          compiled from "application/views/login/index.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:748911867583ec1bbdd5e75-55648558%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '1651c925f7c22a6c4a1fe95875949216dcb47f52' => 
     array (
       0 => 'application/views/login/index.tpl',
-      1 => 1480845055,
+      1 => 1481028430,
       2 => 'file',
     ),
   ),
@@ -77,8 +77,8 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     </form>
 </div>
 
-<script src="/static/js/jquery.min.js"></script>
-<script src="/static/js/matrix.login.js"></script>
+<script src="/static/js/plugin/jquery.min.js"></script>
+<script src="/static/js/login.js"></script>
 </body>
 
 </html>

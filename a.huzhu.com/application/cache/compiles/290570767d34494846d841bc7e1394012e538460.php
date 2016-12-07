@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.19, created on 2016-12-05 20:17:07
+<?php /* Smarty version Smarty-3.1.19, created on 2016-12-07 21:46:07
          compiled from "application/views/product/index.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:355795208584421a36c9663-78641981%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'd0a92b37086577415d45aeb053bd4b4e1ad683f4' => 
     array (
       0 => 'application/views/product/index.tpl',
-      1 => 1480938584,
+      1 => 1481118365,
       2 => 'file',
     ),
   ),
@@ -17,6 +17,11 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   ),
   'version' => 'Smarty-3.1.19',
   'unifunc' => 'content_584421a375a856_39933332',
+  'variables' => 
+  array (
+    'cate' => 0,
+    'c' => 0,
+  ),
   'has_nocache_code' => false,
 ),false); /*/%%SmartyHeaderCode%%*/?>
 <?php if ($_valid && !is_callable('content_584421a375a856_39933332')) {function content_584421a375a856_39933332($_smarty_tpl) {?><?php echo $_smarty_tpl->getSubTemplate ('public/header.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, null, array(), 0);?>
@@ -46,19 +51,28 @@ $_valid = $_smarty_tpl->decodeProperties(array (
                     </div>
                     <div class="widget-content nopadding">
                         <form action="#" method="get" class="form-horizontal">
-                            <div class="span6">
-                                <div class="control-group">
+                            <div class="control-group">
+                                <div class="span6">
                                     <label class="control-label">产品ID</label>
                                     <div class="controls">
-                                        <input type="text" class="span11" placeholder="产品ID">
+                                        <input type="text" class="span11" name="product_id" placeholder="产品ID">
                                     </div>
                                 </div>
-                            </div>
-                            <div class="span6">
-                                <div class="control-group">
-                                    <label class="control-label">产品名字</label>
+                                <div class="span6">
+                                    <label class="control-label">产品分类</label>
                                     <div class="controls">
-                                        <input type="text" class="span11" placeholder="产品名字">
+                                        <select name="category_id" id="category_id">
+                                            <option value="">请选择产品分类</option>
+                                            <?php  $_smarty_tpl->tpl_vars['c'] = new Smarty_Variable; $_smarty_tpl->tpl_vars['c']->_loop = false;
+ $_from = $_smarty_tpl->tpl_vars['cate']->value['list']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array');}
+foreach ($_from as $_smarty_tpl->tpl_vars['c']->key => $_smarty_tpl->tpl_vars['c']->value) {
+$_smarty_tpl->tpl_vars['c']->_loop = true;
+?>
+                                            <option value="<?php echo $_smarty_tpl->tpl_vars['c']->value['Fcategory_id'];?>
+"><?php echo $_smarty_tpl->tpl_vars['c']->value['Fcategory_name'];?>
+</option>
+                                            <?php } ?>
+                                        </select>
                                     </div>
                                 </div>
                             </div>
@@ -75,10 +89,11 @@ $_valid = $_smarty_tpl->decodeProperties(array (
                 <div class="widget-box">
                     <div class="widget-title"> <span class="icon"> <i class="icon-th"></i> </span>
                         <h5>产品信息</h5>
-                        <span class="label label-info">添加</span> </div>
-                    <!--table info-->
+                        <a class="label label-info js-btn-add-product" href="/product/add">添加产品</a>
+                    </div>
+                    <div id="product-list-content">
 
-                    <!--end table info-->
+                    </div>
                 </div>
             </div>
         </div>
@@ -90,23 +105,6 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 
 <?php echo $_smarty_tpl->getSubTemplate ("public/footer.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, null, array(), 0);?>
 
-<script>
-    $(function(){
-        $.ajax({
-            url: '/product/query',
-            data: {},
-            dataType: 'JSON',
-            type: 'JSON',
-            success: function(){
-                
-            },
-            error: function () {
-                
-            }
-        })
-
-    })
-</script>
 </body>
 </html>
 <?php }} ?>

@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.19, created on 2016-12-04 21:12:23
+<?php /* Smarty version Smarty-3.1.19, created on 2016-12-07 20:44:42
          compiled from "application/views/public/header.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:1915945236583ec1bbe158f1-63187989%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '1ef0e9cbde8d978c4a99a54c7c651e43a29cdced' => 
     array (
       0 => 'application/views/public/header.tpl',
-      1 => 1480857118,
+      1 => 1481114680,
       2 => 'file',
     ),
   ),
@@ -32,17 +32,21 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 </title>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="/static/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="/static/css/matrix-style.css" />
-    <link rel="stylesheet" href="/static/css/matrix-media.css" />
-    <link href="/static/font-awesome/css/font-awesome.css" rel="stylesheet" />
+    <link rel="stylesheet" href="<?php echo baseCssUrl("bootstrap.min.css");?>
+" />
+    <link rel="stylesheet" href="<?php echo baseCssUrl("matrix-style.css");?>
+" />
+    <link rel="stylesheet" href="<?php echo baseCssUrl("matrix-media.css");?>
+" />
+    <link href="<?php echo getBaseUrl("/static/font-awesome/css/font-awesome.css");?>
+" rel="stylesheet" />
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,800' rel='stylesheet' type='text/css'>
     <?php  $_smarty_tpl->tpl_vars['css'] = new Smarty_Variable; $_smarty_tpl->tpl_vars['css']->_loop = false;
  $_from = $_smarty_tpl->tpl_vars['cssArr']->value; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array');}
 foreach ($_from as $_smarty_tpl->tpl_vars['css']->key => $_smarty_tpl->tpl_vars['css']->value) {
 $_smarty_tpl->tpl_vars['css']->_loop = true;
 ?>
-    <link href="<?php echo getBaseUrl($_smarty_tpl->tpl_vars['css']->value['url']);?>
+    <link href="<?php echo baseCssUrl($_smarty_tpl->tpl_vars['css']->value['url']);?>
 " rel="stylesheet" type="text/css">
     <?php } ?>
 </head><?php }} ?>

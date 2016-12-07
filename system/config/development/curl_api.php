@@ -35,7 +35,8 @@ $config = array(
             'getProductByPid'       => '/product/getProductByPid',      // 某个product
             'addProduct'            => '/product/add',                  // add
             'updateProduct'         => '/product/update',               // 更新
-            'delProduct'            => '/product/del'                   // 删除
+            'delProduct'            => '/product/del',                  // 删除
+            'changeStatus'          => '/product/changeStatus'          // 更新状态
         ),
     ),
 );

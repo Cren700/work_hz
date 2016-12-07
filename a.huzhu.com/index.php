@@ -7,7 +7,7 @@
  */
 define("ROOT_PATH", dirname(dirname(__FILE__)));
 define("APPLICATION_ROOT", dirname(__FILE__));
-define("APP_NAME", "a.dev.huzhu.com");
+define("APP_NAME", "http://a.dev.huzhu.com");
 
 require_once ROOT_PATH . '/index.php';
 

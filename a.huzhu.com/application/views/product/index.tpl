@@ -21,19 +21,22 @@
                     </div>
                     <div class="widget-content nopadding">
                         <form action="#" method="get" class="form-horizontal">
-                            <div class="span6">
-                                <div class="control-group">
+                            <div class="control-group">
+                                <div class="span6">
                                     <label class="control-label">产品ID</label>
                                     <div class="controls">
-                                        <input type="text" class="span11" placeholder="产品ID">
+                                        <input type="text" class="span11" name="product_id" placeholder="产品ID">
                                     </div>
                                 </div>
-                            </div>
-                            <div class="span6">
-                                <div class="control-group">
-                                    <label class="control-label">产品名字</label>
+                                <div class="span6">
+                                    <label class="control-label">产品分类</label>
                                     <div class="controls">
-                                        <input type="text" class="span11" placeholder="产品名字">
+                                        <select name="category_id" id="category_id">
+                                            <option value="">请选择产品分类</option>
+                                            <{foreach $cate['list'] as $c}>
+                                            <option value="<{$c.Fcategory_id}>"><{$c.Fcategory_name}></option>
+                                            <{/foreach}>
+                                        </select>
                                     </div>
                                 </div>
                             </div>
@@ -50,10 +53,11 @@
                 <div class="widget-box">
                     <div class="widget-title"> <span class="icon"> <i class="icon-th"></i> </span>
                         <h5>产品信息</h5>
-                        <span class="label label-info">添加</span> </div>
-                    <!--table info-->
+                        <a class="label label-info js-btn-add-product" href="/product/add">添加产品</a>
+                    </div>
+                    <div id="product-list-content">
 
-                    <!--end table info-->
+                    </div>
                 </div>
             </div>
         </div>
@@ -64,22 +68,5 @@
 
 
 <{include file="public/footer.tpl"}>
-<script>
-    $(function(){
-        $.ajax({
-            url: '/product/query',
-            data: {},
-            dataType: 'JSON',
-            type: 'JSON',
-            success: function(){
-                
-            },
-            error: function () {
-                
-            }
-        })
-
-    })
-</script>
 </body>
 </html>

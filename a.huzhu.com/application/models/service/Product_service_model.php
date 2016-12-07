@@ -24,15 +24,24 @@ class Product_service_model extends HZ_Model
         return $this->myCurl('product', 'getProductByPid', $data, false);
     }
 
+    public function status($data)
+    {
+        return $this->myCurl('product', 'changeStatus', $data, true);
+    }
+
     public function save($data)
     {
         $is_new = $data['is_new'];
         unset($data['is_new']);
         if ($is_new) {
-            return $this->myCurl('product', 'addProduct', $data, true);
+            $res = $this->myCurl('product', 'addProduct', $data, true);
         } else {
-            return $this->myCurl('product', 'updateProduct', $data, true);
+            $res = $this->myCurl('product', 'updateProduct', $data, true);
         }
+        if ($res['code'] === 0) {
+            $res['data']['url'] = getBaseUrl('/product.html');
+        }
+        return $res;
     }
 
     public function del($data)

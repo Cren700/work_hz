@@ -56,7 +56,9 @@ class HZ_Model extends CI_Model
         }
 
         $res = curl_exec($ch);
-//        echo $res;die;
+//        if ($url == 'http://api.product.huzhu.com/product/query?p=1&page_size=10&product_id=&category_id=&store_id=13') {
+        // echo $res;die;
+//        }
         $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);//print_r($httpCode);exit();
         curl_close($ch);
 

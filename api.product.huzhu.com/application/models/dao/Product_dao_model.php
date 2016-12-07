@@ -16,8 +16,15 @@ class Product_dao_model extends HZ_Model
         $this->p = $this->load->database('product', true);// 产品库
     }
 
-    public function query($where) {
-        $query = $this->p->get_where($this->_product_table, $where);
+    public function productNum($where) {
+        $query = $this->p->select('count(*) as num')->where($where)->get($this->_product_table);
+
+        $res = $query->row_array();
+        return isset($res['num']) ? $res['num'] : 0;
+    }
+
+    public function productList($where, $page, $page_size) {
+        $query = $this->p->order_by('Fproduct_id', 'DESC')->get_where($this->_product_table, $where, $page_size, $page_size * ($page - 1));
         return $query->result_array();
     }
 
@@ -41,6 +48,11 @@ class Product_dao_model extends HZ_Model
     public function del($where)
     {
         return $this->p->delete($this->_product_table, $where);
+    }
+
+    public function changeStatus($data, $where)
+    {
+        return $this->p->update($this->_product_table, $data, $where);
     }
 
 }

@@ -17,29 +17,33 @@ class Product_service_model extends HZ_Model
     public function query($option)
     {
         $res = array('code' => 0);
-        $where = array();
+        $where = array('Fis_del' => '0');
 
-        if (isset($option['Fproduct_id'])) {
-            $where[] = array('Fproduct_id' => $option['Fproduct_id']);
+        if (isset($option['Fproduct_id']) && !empty($option['Fproduct_id'])) {
+            $where['Fproduct_id'] = $option['Fproduct_id'];
         }
 
-        if (isset($option['Fcategory_id'])) {
-            $where[] = array('Fcategory_id' => $option['Fcategory_id']);
+        if (isset($option['Fcategory_id']) && !empty($option['Fcategory_id'])) {
+            $where['Fcategory_id'] = $option['Fcategory_id'];
         }
 
-        if (isset($option['Fstore_id'])) {
-            $where[] = array('Fstore_id' => $option['Fstore_id']);
+        if (isset($option['Fstore_id']) && !empty($option['Fstore_id'])) {
+            $where['Fstore_id'] = $option['Fstore_id'];
         }
 
-        if (isset($option['Fproduct_name'])) {
-            $where[] = array('Fproduct_name' => $option['Fproduct_name']);
+        if (isset($option['Fproduct_name']) && !empty($option['Fproduct_name'])) {
+            $where['Fproduct_name'] = $option['Fproduct_name'];
         }
 
-        if (isset($option['Fproduct_status'])) {
-            $where[] = array('Fproduct_status' => $option['Fproduct_status']);
+        if (isset($option['Fproduct_status']) && !empty($option['Fproduct_status'])) {
+            $where['Fproduct_status'] = $option['Fproduct_status'];
         }
 
-        $res['data'] = $this->product_dao->query($where);
+        $page = $option['p'] ? : 1;
+        $page_size = $option['page_size'];
+
+        $res['data']['count'] = $this->product_dao->productNum($where);
+        $res['data']['list'] = $this->product_dao->productList($where, $page, $page_size);
 
         return $res;
     }
@@ -60,6 +64,11 @@ class Product_service_model extends HZ_Model
                 'field' => '产品名称'
             ),
             array(
+                'value' => $data['Fcategory_id'],
+                'rules' => 'required',
+                'field' => '产品分类'
+            ),
+            array(
                 'value' => $data['Fproduct_price'],
                 'rules' => 'required|price',
                 'field' => '产品价格'
@@ -67,12 +76,7 @@ class Product_service_model extends HZ_Model
             array(
                 'value' => $data['Fproduct_num'],
                 'rules' => 'required',
-                'field' => '产品数量'
-            ),
-            array(
-                'value' => $data['Fcategory_id'],
-                'rules' => 'required',
-                'field' => '产品分类'
+                'field' => '产品库存'
             )
         );
         foreach ($validationConfig as $v) {
@@ -123,8 +127,8 @@ class Product_service_model extends HZ_Model
             $ret['code'] = 'system_error_2'; // 操作出错
             return $ret;
         }
-        $cate = $this->product_dao->getProductInfoByFId($where);
-        if (empty($cate)) {
+        $product = $this->product_dao->getProductInfoByFId($where);
+        if (empty($product)) {
             $ret['code'] = 'product_error_2'; // 不存在
             return $ret;
         }
@@ -133,6 +137,32 @@ class Product_service_model extends HZ_Model
             return $ret;
         } else {
             return $ret['code'] = 'product_error_4';
+        }
+    }
+
+    public function changeStatus($data, $where)
+    {
+        $ret = array('code' => 0);
+        if (!isset($data['Fproduct_status']) && empty($data['Fproduct_status'])) {
+            unset($data['Fproduct_status']);
+        }
+        if (!isset($data['Fis_del']) && empty($data['Fis_del'])) {
+            unset($data['Fis_del']);
+        }
+        if (empty($data) || empty($where)) {
+            $ret['code'] = 'system_error_2'; // 无信息
+            return $ret;
+        }
+        if (empty($this->product_dao->getProductInfoByFId($where))) {
+            $ret['code'] = 'product_error_2'; // 不存在
+            return $ret;
+        }
+        $data['Fupdate_time'] = time();
+        $res = $this->product_dao->changeStatus($data, $where);
+        if ($res) {
+            return $ret;
+        } else {
+            return $ret['code'] = 'product_error_9';
         }
     }
 

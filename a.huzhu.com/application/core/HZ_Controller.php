@@ -59,16 +59,17 @@ class HZ_Controller extends CI_Controller
         exit();
     }
 
-    public function page($rows, $page, $url)
+    public function page($rows, $p = 1, $pageSize = 10, $url = '')
     {
         $this->load->library('pagination');
         $config['base_url'] = $url;
         $config['total_rows'] = $rows;
-        $config['per_page'] = $page;
+        $config['per_page'] = $pageSize;
         $config['first_link'] = false;
         $config['last_link'] = false;
         $config['prev_link'] = '&lt;';
         $config['next_link'] = '&gt;';
+        $config['cur_page'] = $p; // 当前页数
 
         $config['use_page_numbers'] = TRUE;
 

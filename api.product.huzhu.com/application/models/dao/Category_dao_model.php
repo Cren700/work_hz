@@ -18,7 +18,7 @@ class Category_dao_model extends HZ_Model
 
     public function lists()
     {
-        $query = $this->p->get($this->_cate_table);
+        $query = $this->p->get_where($this->_cate_table);
         return $query->result_array();
     }
 

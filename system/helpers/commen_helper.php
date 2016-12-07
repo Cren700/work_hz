@@ -243,9 +243,9 @@ function getBaseUrl($uri = '')
 }
 
 function baseCssUrl($uri){
-    return '/assets/css/' . $uri;
+    return getBaseUrl('/static/css/' . $uri);
 }
 
 function baseJsUrl($uri){
-    return '/assets/js/' . $uri;
+    return getBaseUrl('/static/js/' . $uri);
 }

@@ -51,8 +51,8 @@
     </form>
 </div>
 
-<script src="/static/js/jquery.min.js"></script>
-<script src="/static/js/matrix.login.js"></script>
+<script src="/static/js/plugin/jquery.min.js"></script>
+<script src="/static/js/login.js"></script>
 </body>
 
 </html>

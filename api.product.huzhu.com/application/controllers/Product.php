@@ -19,7 +19,16 @@ class Product extends HZ_Controller
      */
     public function query()
     {
-        $option = array();
+        $option = array(
+            'Fproduct_id' => $this->input->get('product_id'),
+            'Fcategory_id' => $this->input->get('category_id'),
+            'Fstore_id' => $this->input->get('store_id'),
+            'Fproduct_name' => $this->input->get('product_name'),
+            'Fproduct_status' => $this->input->get('product_status'),
+            'p' => $this->input->get('p') ? : 1,
+            'page_size' => $this->input->get('page_size'),
+            'Fstore_id' => $this->input->get('store_id'),
+        );
         $res = $this->product_service->query($option);
         echo outputResponse($res);
     }
@@ -47,6 +56,7 @@ class Product extends HZ_Controller
             'Fproduct_price' => $this->input->post('product_price'),
             'Fproduct_num' => $this->input->post('product_num'),
             'Fcategory_id' => $this->input->post('category_id'),
+            'Fremark' => $this->input->post('remark'),
             'Fcreate_time'  => time(),
             'Fupdate_time'  => time(),
         );
@@ -59,13 +69,14 @@ class Product extends HZ_Controller
      */
     public function update()
     {
-        $where = array('Fproduct_id' => $this->input->post('id'));
+        $where = array('Fproduct_id' => $this->input->post('product_id'));
         $data = array(
             'Fstore_id' => $this->input->post('store_id'),
             'Fproduct_name' => $this->input->post('product_name'),
             'Fproduct_price' => $this->input->post('product_price'),
             'Fproduct_num' => $this->input->post('product_num'),
             'Fcategory_id' => $this->input->post('category_id'),
+            'Fremark' => $this->input->post('remark'),
             'Fupdate_time'  => time(),
         );
         $res = $this->product_service->update($where, $data);
@@ -79,6 +90,22 @@ class Product extends HZ_Controller
     {
         $where = array('Fproduct_id' => $this->input->get('id'));
         $res = $this->product_service->del($where);
+        echo outputResponse($res);
+    }
+
+    /**
+     * 更新状态
+     */
+    public function changeStatus()
+    {
+        $data = array(
+            'Fproduct_status' => $this->input->post('status'),
+            'Fis_del' => $this->input->post('is_del')
+        );
+        $where = array(
+            'Fproduct_id'   => $this->input->post('pid')
+        );
+        $res = $this->product_service->changeStatus($data, $where);
         echo outputResponse($res);
     }
 }
