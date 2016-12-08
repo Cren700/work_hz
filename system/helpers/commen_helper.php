@@ -252,3 +252,7 @@ function baseCssUrl($uri){
 function baseJsUrl($uri){
     return getBaseUrl('/static/js/' . $uri);
 }
+
+function baseImgUrl($uri){
+    return getBaseUrl('/static/img/' . $uri);
+}
