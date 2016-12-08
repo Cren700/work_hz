@@ -34,19 +34,19 @@
                 <td class="js-product-status"><{if $i['Fproduct_status'] eq 1 }>待审核<{elseif $i['Fproduct_status'] eq 2}>已上架<{elseif $i['Fproduct_status'] eq 3}>下架<{else}>已完成<{/if}></td>
                 <td>
                     <{if $i['Fproduct_status'] eq 1}>
-                        <button class="btn btn-primary js-btn-status" data-status="2">上架</button>
-                        <button class="btn btn-warning js-btn-status" data-status="3">下架</button>
-                        <button class="btn btn-danger js-btn-delete">删除</button>
+                        <button class="btn btn-primary btn-mini js-btn-status" data-status="2">上架</button>
+                        <button class="btn btn-warning btn-mini js-btn-status" data-status="3">下架</button>
+                        <button class="btn btn-danger btn-mini js-btn-delete">删除</button>
                     <{elseif $i['Fproduct_status'] eq 2}>
-                        <button class="btn btn-warning js-btn-status" data-status="3">下架</button>
-                        <button class="btn btn-success js-btn-status" data-status="4">已完成</button>
-                        <button class="btn btn-danger js-btn-delete">删除</button>
+                        <button class="btn btn-warning btn-mini js-btn-status" data-status="3">下架</button>
+                        <button class="btn btn-success btn-mini js-btn-status" data-status="4">已完成</button>
+                        <button class="btn btn-danger btn-mini js-btn-delete">删除</button>
                     <{elseif $i['Fproduct_status'] eq 3}>
-                        <button class="btn btn-info js-btn-status" data-status="1">审核不通过</button>
-                        <button class="btn btn-primary js-btn-status" data-status="2">上架</button>
-                        <button class="btn btn-danger js-btn-delete">删除</button>
+                        <button class="btn btn-info btn-mini js-btn-status" data-status="1">审核不通过</button>
+                        <button class="btn btn-primary btn-mini js-btn-status" data-status="2">上架</button>
+                        <button class="btn btn-danger btn-mini js-btn-delete">删除</button>
                     <{else}>
-                        <button class="btn btn-danger js-btn-delete">删除</button>
+                        <button class="btn btn-danger btn-mini js-btn-delete">删除</button>
                     <{/if}>
                 </td>
             </tr>

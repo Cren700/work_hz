@@ -36,11 +36,6 @@ class Category_service_model extends HZ_Model
         // 数据验证
         $validationConfig = array(
             array(
-                'value' => $data['Fcategory_id'],
-                'rules' => 'required',
-                'field' => '分类ID'
-            ),
-            array(
                 'value' => $data['Fcategory_name'],
                 'rules' => 'required',
                 'field' => '分类名称'
@@ -57,32 +52,7 @@ class Category_service_model extends HZ_Model
                 return $resValidation;
             }
         }
-        $cate = $this->cate_dao->getCateInfoByCateId($data['Fcategory_id']);
-        if (!empty($cate)) {
-            $ret['code'] = 'product_error_3'; // 已存在
-            return $ret;
-        }
         $res = $this->cate_dao->add($data);
-        if ($res) {
-            return $ret;
-        } else {
-            return $ret['code'] = 'product_error_4';
-        }
-    }
-
-    public function del($where)
-    {
-        $ret = array('code' => 0);
-        if (!isset($where['Fid']) && empty($where['Fid'])) {
-            $ret['code'] = 'system_error_2'; // 操作出错
-            return $ret;
-        }
-        $cate = $this->cate_dao->getCateInfoByCateId($where['Fid']);
-        if (empty($cate)) {
-            $ret['code'] = 'product_error_2'; // 不存在
-            return $ret;
-        }
-        $res = $this->cate_dao->del($where);
         if ($res) {
             return $ret;
         } else {
@@ -93,11 +63,11 @@ class Category_service_model extends HZ_Model
     public function update($where, $data)
     {
         $ret = array('code' => 0);
-        if (!isset($where['Fid']) && empty($where['Fid'])) {
+        if (!isset($where['Fcategory_id']) && empty($where['Fcategory_id'])) {
             $ret['code'] = 'system_error_2'; // 操作出错
             return $ret;
         }
-        $cate = $this->cate_dao->getCateInfoByCateId($where['Fid']);
+        $cate = $this->cate_dao->getCateInfoByCateId($where['Fcategory_id']);
         if (empty($cate)) {
             $ret['code'] = 'product_error_2'; // 不存在
             return $ret;
@@ -107,6 +77,26 @@ class Category_service_model extends HZ_Model
             return $ret;
         } else {
             return $ret['code'] = 'product_error_5';
+        }
+    }
+
+    public function del($where)
+    {
+        $ret = array('code' => 0);
+        if (!isset($where['Fcategory_id']) && empty($where['Fcategory_id'])) {
+            $ret['code'] = 'system_error_2'; // 操作出错
+            return $ret;
+        }
+        $cate = $this->cate_dao->getCateInfoByCateId($where['Fcategory_id']);
+        if (empty($cate)) {
+            $ret['code'] = 'product_error_2'; // 不存在
+            return $ret;
+        }
+        $res = $this->cate_dao->del($where);
+        if ($res) {
+            return $ret;
+        } else {
+            return $ret['code'] = 'product_error_4';
         }
     }
 

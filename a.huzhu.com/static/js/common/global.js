@@ -49,7 +49,7 @@ HZ.Form = (function () {
                             msg: "操作成功",
                             type: 'msg'
                         });
-                        t.callback();
+                        t.callback && t.callback();
                     }
                 }
             },
@@ -102,7 +102,7 @@ HZ.Dialog = (function() {
         <h3>{title}</h3>\
         </div>\
         <div class="modal-body">\
-            <p>{showMsg}</p>\
+            <p class="text-center">{showMsg}</p>\
         </div>';
         var btnDialog = '<div class="modal-footer"><a data-dismiss="modal" class="btn btn-primary js-dialog-btn-sure" href="#">{yesText}</a> <a data-dismiss="modal" class="btn js-dialog-btn-cancel" href="#">{closeText}</a> </div>';
         var tmpDialogEnd = '</div>';

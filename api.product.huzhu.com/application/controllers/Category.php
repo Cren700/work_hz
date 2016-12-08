@@ -35,11 +35,7 @@ class Category extends BaseController {
      */
     public function add()
     {
-//        $data = $this->input->post();
-//        $data = array('Fcategory_id' => '5', 'Fcategory_name' => '不怕死类', 'Fremark' => '就不怕死');
-//        unset($data['Fid']);
         $data = array();
-        $data['Fcategory_id'] = $this->input->post('category_id');
         $data['Fcategory_name'] = $this->input->post('category_name');
         $data['Fremark'] = $this->input->post('remark');
         $res = $this->cate_service->add($data);
@@ -52,11 +48,10 @@ class Category extends BaseController {
     public function update()
     {
         $data = array(
-            'Fcategory_id' => $this->input->post('category_id'),
             'Fcategory_name' => $this->input->post('category_name'),
             'Fremark' => $this->input->post('remark'),
         );
-        $where = array('Fid' => $this->input->post('id'));
+        $where = array('Fcategory_id' => $this->input->post('category_id'));
         $res = $this->cate_service->update($where, $data);
         echo outputResponse($res);
     }

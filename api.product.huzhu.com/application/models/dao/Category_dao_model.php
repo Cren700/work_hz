@@ -30,7 +30,7 @@ class Category_dao_model extends HZ_Model
 
     public function getCateInfoByCateId($cate_id)
     {
-        $where = array('Fid' => $cate_id);
+        $where = array('Fcategory_id' => $cate_id);
         $query = $this->p->get_where($this->_cate_table, $where);
         return $query->row_array();
     }

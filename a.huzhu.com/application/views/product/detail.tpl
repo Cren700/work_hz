@@ -68,9 +68,9 @@
                             </div>
                             <div class="form-actions">
                                 <input type="submit" class="btn btn-success" value="提 交" />
-                                <input type="reset" class="btn" value="重 置"/>
+                                <a href="<{'/product.html'|getBaseUrl}>" class="btn" title="返回列表">返回列表</a>
                             </div>
-                            <input type="hidden" name="product_id" value="<{$product['Fproduct_id']}>">
+                            <input type="hidden" name="product_id" value="<{$product['Fproduct_id']|default:''}>">
                             <input type="hidden" name="is_new" value="<{$is_new}>">
                         </div>
                     </form>

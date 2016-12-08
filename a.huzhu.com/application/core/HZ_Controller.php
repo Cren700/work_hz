@@ -59,6 +59,12 @@ class HZ_Controller extends CI_Controller
         exit();
     }
 
+    public function jump404()
+    {
+        $this->jump(getBaseUrl('/404.html'));
+        exit();
+    }
+
     public function page($rows, $p = 1, $pageSize = 10, $url = '')
     {
         $this->load->library('pagination');

@@ -17,7 +17,6 @@ class Product extends BaseControllor
 
     public function index()
     {
-
         $cate = $this->cate_service->index();
         $jsArr = array(
             'product/product.js'
@@ -76,10 +75,10 @@ class Product extends BaseControllor
         $data = array(
             'product_id' => $pid ? : $this->input->get('pid')
         );
+
         $product = $this->product_service->getProductByPid($data);
         if (empty($product['data'])) {
-            $uri = rawurlencode($_SERVER['REQUEST_URI']);
-            $this->jump(getBaseUrl('/404/'.$uri));
+            $this->jump404();
         }
         $cate = $this->cate_service->index();
         $jsArr = array(
@@ -128,6 +127,71 @@ class Product extends BaseControllor
             'id' => $this->input->get('id')
         );
         $res = $this->product_service->del($data);
+        echo json_encode_data($res);
+    }
+
+    /**
+     * 产品分类
+     */
+    public function cate()
+    {
+        $cate = $this->cate_service->index();
+        $this->smarty->assign('cate', $cate['data']);
+        $this->smarty->display('product/cateList.tpl');
+    }
+
+    public function addCate()
+    {
+        $jsArr = array(
+            'plugin/jquery.placeholder.min.js',
+            'plugin/jquery.validate.js',
+            'product/cate.js'
+        );
+        $this->smarty->assign('is_new', 1);
+        $this->smarty->assign('jsArr', $jsArr);
+        $this->smarty->display('product/cate_detail.tpl');
+    }
+
+    public function getCate($id = '')
+    {
+        $jsArr = array(
+            'plugin/jquery.placeholder.min.js',
+            'plugin/jquery.validate.js',
+            'product/cate.js'
+        );
+        $data = array(
+            'category_id' => $id ? $id : $this->input->get('id')
+        );
+        !$data['category_id'] ? $this->jump404():'';
+        $cate = $this->cate_service->getCategory($data);
+        empty($cate['data']) ? $this->jump404() : '';
+        $this->smarty->assign('cate', $cate['data']);
+        $this->smarty->assign('is_new', 0);
+        $this->smarty->assign('jsArr', $jsArr);
+        $this->smarty->display('product/cate_detail.tpl');
+    }
+
+    public function saveCate()
+    {
+        $data = array(
+            'is_new' => $this->input->post('is_new'),
+            'category_id' => $this->input->post('category_id'),
+            'category_name' => $this->input->post('category_name'),
+            'remark' => $this->input->post('remark'),
+        );
+        $res = $this->cate_service->save($data);
+        if(!$res['code']) {
+            $res['data']['url'] = getBaseUrl('/product/cate.html');
+        }
+        echo json_encode_data($res);
+    }
+
+    public function delCate()
+    {
+        $data = array(
+            'id' => $this->input->get('id')
+        );
+        $res = $this->cate_service->del($data);
         echo json_encode_data($res);
     }
 

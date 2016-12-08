@@ -13,9 +13,9 @@ class error extends HZ_Controller
         parent::__construct();
     }
 
-    public function error_404($uri = '')
+    public function error_404()
     {
-        $this->smarty->assign('uri', getBaseUrl($uri));
+        $this->smarty->assign('uri', getBaseUrl(''));
         $this->smarty->display('errors/404.tpl');
     }
 }

@@ -12,6 +12,7 @@
 <script src="<{"plugin/jquery.min.js"|baseJsUrl}>"></script>
 <script src="<{"plugin/jquery.ui.custom.js"|baseJsUrl}>"></script>
 <script src="<{"plugin/bootstrap.min.js"|baseJsUrl}>"></script>
+<script src="<{"plugin/matrix.js"|baseJsUrl}>"></script>
 <script src="<{"common/global.js"|baseJsUrl}>"></script>
 
 <{foreach $jsArr as $js}>

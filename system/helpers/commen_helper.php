@@ -235,6 +235,9 @@ function json_encode_data($data, $format = JSON_UNESCAPED_UNICODE)
 {
     return json_encode($data, $format);
 }
+function p($data) {
+    exit(json_encode_data($data));
+}
 
 // 获取URL
 function getBaseUrl($uri = '')
