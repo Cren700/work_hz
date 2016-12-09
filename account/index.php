@@ -5,11 +5,14 @@
  * Date: 16/7/9
  * Time: 上午1:18
  */
+
+
+
 define("ROOT_PATH", dirname(dirname(__FILE__)));
 define("APPLICATION_ROOT", dirname(__FILE__));
-define("APP_NAME", "http://www.dev.huzhu.com/account");
 
 require_once ROOT_PATH . '/index.php';
+define("APP_NAME", HOST_URL."account");
 
 /*
  *---------------------------------------------------------------

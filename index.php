@@ -7,7 +7,7 @@
  */
 
 define('ENVIRONMENT', 'development');
-
+define("HOST_URL", $_SERVER['REQUEST_SCHEME'].'://'.$_SERVER['SERVER_NAME']);
 
 switch (ENVIRONMENT)
 {

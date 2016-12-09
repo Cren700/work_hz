@@ -8,7 +8,7 @@
 
 $config = array(
     'account' => array(
-        'host'  => 'http://www.dev.huzhu.com/account',
+        'host'  => HOST_URL.'/account',
         'api'   => array(
             'addAccount'            => '/account/add',                   // 添加账号
             'login'                 => '/account/login',                 // 用户登录
@@ -22,7 +22,7 @@ $config = array(
         ),
     ),
     'product' => array(
-        'host'  => 'http://www.dev.huzhu.com/product',
+        'host'  => HOST_URL.'/product',
         'api'   => array(
             // 分类
             'category'              => '/category/lists',               // 列表list

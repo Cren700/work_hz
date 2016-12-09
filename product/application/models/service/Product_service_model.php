@@ -157,7 +157,8 @@ class Product_service_model extends HZ_Model
             $ret['code'] = 'system_error_2'; // 无信息
             return $ret;
         }
-        if (empty($this->product_dao->getProductInfoByFId($where))) {
+        $product = $this->product_dao->getProductInfoByFId($where);
+        if (empty($product)) {
             $ret['code'] = 'product_error_2'; // 不存在
             return $ret;
         }
