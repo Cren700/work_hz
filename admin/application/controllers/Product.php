@@ -12,12 +12,11 @@ class Product extends BaseControllor
     {
         parent::__construct();
         $this->load->model('service/product_service_model', 'product_service');
-        $this->load->model('service/category_service_model', 'cate_service');
     }
 
     public function index()
     {
-        $cate = $this->cate_service->index();
+        $cate = $this->product_service->category();
         $jsArr = array(
             'product/product.js'
         );
@@ -37,7 +36,7 @@ class Product extends BaseControllor
             'is_del' => $this->input->get('is_del') ? : '',
             'store_id'  => $this->input->get('store_id') ? : $this->_uid,
         );
-        $cate = $this->cate_service->index();
+        $cate = $this->product_service->category();
         $cate = isset($cate['data']['list']) ? $cate['data']['list'] : array();
         $tmp = array();
         foreach ($cate as $c) {
@@ -61,7 +60,7 @@ class Product extends BaseControllor
 
     public function add()
     {
-        $cate = $this->cate_service->index();
+        $cate = $this->product_service->category();
         $jsArr = array(
             'plugin/jquery.placeholder.min.js',
             'plugin/jquery.validate.js',
@@ -82,7 +81,7 @@ class Product extends BaseControllor
         if (empty($product['data'])) {
             $this->jump404();
         }
-        $cate = $this->cate_service->index();
+        $cate = $this->product_service->category();
         $jsArr = array(
             'plugin/jquery.placeholder.min.js',
             'plugin/jquery.validate.js',
@@ -137,7 +136,7 @@ class Product extends BaseControllor
      */
     public function cate()
     {
-        $cate = $this->cate_service->index();
+        $cate = $this->product_service->category();
         $this->smarty->assign('cate', $cate['data']);
         $this->smarty->display('product/cateList.tpl');
     }
@@ -165,7 +164,7 @@ class Product extends BaseControllor
             'category_id' => $id ? $id : $this->input->get('id')
         );
         !$data['category_id'] ? $this->jump404():'';
-        $cate = $this->cate_service->getCategory($data);
+        $cate = $this->product_service->getCategory($data);
         empty($cate['data']) ? $this->jump404() : '';
         $this->smarty->assign('cate', $cate['data']);
         $this->smarty->assign('is_new', 0);
@@ -181,7 +180,7 @@ class Product extends BaseControllor
             'category_name' => $this->input->post('category_name'),
             'remark' => $this->input->post('remark'),
         );
-        $res = $this->cate_service->save($data);
+        $res = $this->product_service->saveCate($data);
         if(!$res['code']) {
             $res['data']['url'] = getBaseUrl('/product/cate.html');
         }
@@ -193,7 +192,7 @@ class Product extends BaseControllor
         $data = array(
             'id' => $this->input->get('id')
         );
-        $res = $this->cate_service->del($data);
+        $res = $this->product_service->delCate($data);
         echo json_encode_data($res);
     }
 
@@ -202,7 +201,7 @@ class Product extends BaseControllor
      */
     public function verify()
     {
-        $cate = $this->cate_service->index();
+        $cate = $this->product_service->index();
         $jsArr = array(
             'product/product.js'
         );
@@ -216,7 +215,7 @@ class Product extends BaseControllor
      */
     public function recycle()
     {
-        $cate = $this->cate_service->index();
+        $cate = $this->product_service->index();
         $jsArr = array(
             'product/product.js'
         );

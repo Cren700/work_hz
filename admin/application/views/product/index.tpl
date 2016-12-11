@@ -21,27 +21,24 @@
                     </div>
                     <div class="widget-content nopadding">
                         <form action="#" method="get" class="form-horizontal">
-                            <div class="control-group">
-                                <div class="span6">
-                                    <label class="control-label">产品ID</label>
-                                    <div class="controls">
-                                        <input type="text" class="span11" name="product_id" placeholder="产品ID">
-                                    </div>
+                            <div class="control-group" style="padding: 10px">
+                                <div class="span4">
+                                    <label style="display: inline-block">产品ID</label>
+                                    <input type="text" name="product_id" placeholder="产品ID">
                                 </div>
-                                <div class="span6">
-                                    <label class="control-label">产品分类</label>
-                                    <div class="controls">
-                                        <select name="category_id" id="category_id">
-                                            <option value="">请选择产品分类</option>
-                                            <{foreach $cate['list'] as $c}>
-                                            <option value="<{$c.Fcategory_id}>"><{$c.Fcategory_name}></option>
-                                            <{/foreach}>
-                                        </select>
-                                    </div>
+                                <div class="span4">
+                                    <label style="display: inline-block">产品分类</label>
+                                    <select name="category_id" id="category_id">
+                                        <option value="">请选择产品分类</option>
+                                        <{foreach $cate['list'] as $c}>
+                                        <option value="<{$c.Fcategory_id}>"><{$c.Fcategory_name}></option>
+                                        <{/foreach}>
+                                    </select>
                                 </div>
                             </div>
                             <div class="form-actions">
-                                <button type="submit" class="btn btn-success">搜索</button>
+                                <button type="submit" class="btn btn-success js-btn-submit">搜 索</button>
+                                <input type="reset" class="btn btn-success" value="重 置"/>
                             </div>
                         </form>
                     </div>

@@ -75,22 +75,13 @@ function errorCode($data)
     $ci->config->load('error_code', TRUE);
     $error_code = $ci->config->item('error_code');
     isset($error_code[$data['code']]) && isset($data['field']) ? $error_code[$data['code']]['msg'] = $data['field'] . $error_code[$data['code']]['msg'] : '';
-    return isset($error_code[$data['code']]) ? $error_code[$data['code']] : array('code' => 999999, 'msg' => '未知错误');
+    $res = isset($error_code[$data['code']]) ? $error_code[$data['code']] : array('code' => 999999, 'msg' => '未知错误');
+    // msg {x} 替换
+    if ($res['code'] !== 0 && isset($data['count'])) {
+        $res['msg'] = preg_replace('/{([count]+)}/', $data['count'], $res['msg']);
+    }
+    return $res;
 }
-
-/**
- * 输出的json信息
- * @param $data
- * @return string
- */
-//function outPutJsonData($data)
-//{
-//    if ($data['code'] !== 0) {
-//        $data = errorCode($data);
-//    }
-//    isset($data['data']) ? filterOutData($data['data']) : '';
-//    return json_encode($data, JSON_UNESCAPED_UNICODE);
-//}
 
 /**
  * 输出
@@ -175,6 +166,7 @@ function validationData($data, $rules, $field)
                 if (strlen($data) < $match[0]) {
                     $res['field'] = $field;
                     $res['code'] = 'validation_error_1'; // 字符数不足
+                    $res['count'] = $match[0];
                 }
                 break;
             case 'max_length':
@@ -182,6 +174,7 @@ function validationData($data, $rules, $field)
                 if (strlen($data) > $match[0]) {
                     $res['code'] = 'validation_error_2'; // 字符数过多
                     $res['field'] = $field;
+                    $res['count'] = $match[0];
                 }
                 break;
             case 'email':
@@ -239,6 +232,60 @@ function p($data) {
     exit(json_encode_data($data));
 }
 
+// 创建目录文件夹
+function _mkdir($path)
+{
+    if (!$path) {
+        return false;
+    }
+    if ( !file_exists($path)) {
+        if (!file_exists(dirname($path))){
+            _mkdir(dirname($path));
+        }
+        mkdir($path, 0777, true);
+    }
+}
+
+/**
+ * 上传文件
+ * @param string $type
+ * @return array
+ */
+function doUpload($type)
+{
+    $fileTypes = array(
+        'img' => array('jpg','jpeg','gif','png'), // 图片
+        'file' => array('doc', 'xlsx', 'xls', 'ppt', 'zip', 'rar'), // 文档
+    );
+    if (!empty($_FILES)) {
+        $file = $_FILES['file_name']; // print_r($_FILES);中的索引词
+        if ($file['error'] == 0) {
+            $tempFile = $file['tmp_name'];   // 临时文件
+            $targetPath = getSaveFilePath($type);    // 上传路径
+            _mkdir($targetPath);
+            $filename = md5(uniqid(mt_rand()).$file['name']) . '.'.pathinfo($file['name'])['extension'];// 修改文件名字
+            $targetFile = rtrim($targetPath, '/') . '/' . $filename;
+            $relativePath = rtrim(setFileRelaPath($type), '/') . '/' . $filename;
+            // 需要检验的数据
+            $fileType = $type ? $fileTypes[$type] : array_merge($fileTypes['img'], $fileTypes['file']); // File extensions
+            $fileParts = pathinfo($file['name']);
+            $fileSize = 3*1024*1024; // 3M
+
+            if ($file['size'] > $fileSize) {
+                $data = array('code' => 1, 'msg' => '上传内容大小为:'. $fileSize / 1024 / 1024 . 'M');
+            } elseif (in_array($fileParts['extension'], $fileType)) {
+                move_uploaded_file($tempFile, $targetFile);
+                $data = array('code' => 0, 'file_data' => $relativePath);
+            } else {
+                $data = array('code' => 2, 'msg' => '上传类型出错,必须为:'.join(',', $fileType));
+            }
+        } else {
+            $data = array('code' => $file['error'], 'msg' => '上传出错');
+        }
+    }
+    return $data;
+}
+
 // 获取URL
 function getBaseUrl($uri = '')
 {
@@ -255,4 +302,36 @@ function baseJsUrl($uri){
 
 function baseImgUrl($uri){
     return getBaseUrl('/static/img/' . $uri);
+}
+
+/**
+ * 图片保存地址
+ * @param string $type
+ * @return string
+ */
+function getSaveFilePath($type = 'img')
+{
+    $type = $type . '/';
+    return $_SERVER['DOCUMENT_ROOT'] . '/files/'. $type .date('Ym', time());
+}
+
+/**
+ * 设置图片的相对地址
+ * @param string $type
+ * @return string
+ */
+function setFileRelaPath($type = 'img')
+{
+    $type = $type . '/';
+    return '/files/'. $type .date('Ym', time());
+}
+
+/**
+ * 获取图片的完整地址
+ * @param string $path
+ * @return string
+ */
+function getFilePath($path)
+{
+    return ROOT_PATH . $path;
 }

@@ -516,8 +516,8 @@ hr{ border-top-color:#dadada;}
 	border-top: 1px solid #CDCDCD;
 	border-right: 1px solid #CDCDCD;
 	clear: both;
-	margin-top: 16px;
-	margin-bottom: 16px;
+	margin-top: 10px;
+	margin-bottom: 10px;
 	position: relative;
 }
 .widget-box.widget-calendar, .widget-box.widget-chat {
@@ -1134,10 +1134,10 @@ form {
 }
 .form-horizontal .control-label {
 	padding-top: 15px;
-	width: 180px;
+	width: 140px;
 }
 .form-horizontal .controls {
-	margin-left: 200px;
+	margin-left: 160px;
 	padding: 10px 0;
 }
 .form-horizontal input[type=text], .form-horizontal input[type=password], .form-horizontal textarea {
@@ -1586,4 +1586,7 @@ div.dataTables_wrapper .ui-widget-header {
 	text-align: center;
 }
 #sidebar .content{ display:none;}
+}
+.form-actions {
+	padding: 5px 20px;
 }

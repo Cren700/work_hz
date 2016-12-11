@@ -107,7 +107,7 @@ HZ.Product = (function() {
             });
         });
 
-        $('.btn-success').on('click', function(e) {
+        $('.js-btn-submit').on('click', function(e) {
             e.preventDefault();
             _getList();
         });

@@ -6,7 +6,7 @@
  * Date     : 2016/12/4
  * Time     : 下午5:57
  */
-class Home extends HZ_Controller
+class Home extends BaseControllor
 {
     public function __construct()
     {

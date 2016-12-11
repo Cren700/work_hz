@@ -49,9 +49,9 @@ HZ.Form = (function () {
                             msg: "操作成功",
                             type: 'msg'
                         });
-                        t.callback && t.callback();
                     }
                 }
+                t.callback && t.callback();
             },
             error: function () {
                 HZ.Dialog.showMsg({
@@ -59,6 +59,7 @@ HZ.Form = (function () {
                     msg: '操作有误',
                     type: 'warm'
                 });
+                t.callback && t.callback();
             }
         });
     }

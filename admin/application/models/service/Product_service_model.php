@@ -8,6 +8,8 @@
  */
 class Product_service_model extends HZ_Model
 {
+    private $_api = 'product';
+    
     public function __construct()
     {
         parent::__construct();
@@ -15,18 +17,18 @@ class Product_service_model extends HZ_Model
 
     public function query($data)
     {
-        return $this->myCurl('product', 'queryProduct', $data, false);
+        return $this->myCurl($this->_api, 'queryProduct', $data, false);
     }
 
 
     public function getProductByPid($data)
     {
-        return $this->myCurl('product', 'getProductByPid', $data, false);
+        return $this->myCurl($this->_api, 'getProductByPid', $data, false);
     }
 
     public function status($data)
     {
-        return $this->myCurl('product', 'changeStatus', $data, true);
+        return $this->myCurl($this->_api, 'changeStatus', $data, true);
     }
 
     public function save($data)
@@ -34,9 +36,9 @@ class Product_service_model extends HZ_Model
         $is_new = $data['is_new'];
         unset($data['is_new']);
         if ($is_new) {
-            $res = $this->myCurl('product', 'addProduct', $data, true);
+            $res = $this->myCurl($this->_api, 'addProduct', $data, true);
         } else {
-            $res = $this->myCurl('product', 'updateProduct', $data, true);
+            $res = $this->myCurl($this->_api, 'updateProduct', $data, true);
         }
         if ($res['code'] === 0) {
             $res['data']['url'] = getBaseUrl('/product.html');
@@ -46,6 +48,35 @@ class Product_service_model extends HZ_Model
 
     public function del($data)
     {
-        return $this->myCurl('product', 'delProduct', $data, false);
+        return $this->myCurl($this->_api, 'delProduct', $data, false);
+    }
+
+
+
+    public function category()
+    {
+        return $this->myCurl($this->_api, 'category', array());
+    }
+
+
+    public function getCategory($data)
+    {
+        return $this->myCurl($this->_api, 'getCategory', $data, false);
+    }
+
+    public function saveCate($data)
+    {
+        $is_new = $data['is_new'];
+        unset($data['is_new']);
+        if ($is_new) {
+            return $this->myCurl($this->_api, 'addCategory', $data, true);
+        } else {
+            return $this->myCurl($this->_api, 'updateCategory', $data, true);
+        }
+    }
+
+    public function delCate($data)
+    {
+        return $this->myCurl($this->_api, 'delCategory', $data, false);
     }
 }

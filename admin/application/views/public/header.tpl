@@ -10,6 +10,6 @@
     <link href="<{"/static/font-awesome/css/font-awesome.css"|getBaseUrl}>" rel="stylesheet" />
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,800' rel='stylesheet' type='text/css'>
     <{foreach $cssArr as $css}>
-    <link href="<{$css['url']|baseCssUrl}>" rel="stylesheet" type="text/css">
+    <link href="<{$css|baseCssUrl}>" rel="stylesheet" type="text/css">
     <{/foreach}>
 </head>

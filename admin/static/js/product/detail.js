@@ -11,7 +11,10 @@ HZ.ProductDetail = (function() {
                 HZ.Form.btnSubmit({
                     t: 'post',
                     u: $(form).attr('action'),
-                    e: $(form)
+                    e: $(form),
+                    callback: function(){
+                        $('.js-btn-submit').attr('disabled', false);
+                    }
                 })
             },
             rules:{
