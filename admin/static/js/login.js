@@ -46,9 +46,10 @@ $(document).ready(function(){
         e.preventDefault();
         var name = $('input[name="user_id"]').val();
         var passwd = $('input[name="passwd"]').val();
+        var uri = $('input[name="uri"]').val();
         var url = $(this).attr('action');
         $.ajax({
-            data:{user_id: name, passwd: passwd},
+            data:{user_id: name, passwd: passwd, uri: uri},
             url: url,
             dataType: 'json',
             type: 'post',

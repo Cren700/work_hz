@@ -201,7 +201,7 @@ class Product extends BaseControllor
      */
     public function verify()
     {
-        $cate = $this->product_service->index();
+        $cate = $this->product_service->category();
         $jsArr = array(
             'product/product.js'
         );
@@ -215,7 +215,7 @@ class Product extends BaseControllor
      */
     public function recycle()
     {
-        $cate = $this->product_service->index();
+        $cate = $this->product_service->category();
         $jsArr = array(
             'product/product.js'
         );

@@ -16,9 +16,4 @@ class Uploadfile extends HZ_Controller
         $data = doUpload($type);
         echo json_encode($data);
     }
-
-    public function getUpload()
-    {
-        print_r($this->input->post());
-    }
 }

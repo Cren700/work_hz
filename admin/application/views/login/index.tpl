@@ -34,6 +34,7 @@
             <span class="pull-left"><a href="#" class="flip-link btn btn-info" id="to-recover">Lost password?</a></span>
             <span class="pull-right"><input class="btn btn-success" type="submit" value="Login"></span>
         </div>
+        <{if $uri }><input type="hidden" name="uri" value="<{$uri}>"/><{/if}>
     </form>
     <form id="recoverform" action="#" class="form-vertical">
         <p class="normal_text">Enter your e-mail address below and we will send you instructions how to recover a password.</p>

@@ -1,5 +1,6 @@
 <{include file='public/header.tpl'}>
 <body>
+<{if $username}>
 <!--header part-->
 <{include file="public/header_part.tpl"}>
 
@@ -8,10 +9,10 @@
 <!--sidebar-menu-->
 <{include file='public/menu.tpl'}>
 <!--sidebar-menu-->
-
+<{/if}>
 <!--main-container-part-->
 
-<div id="content">
+<div id="content" <{if !$username}>style='margin-left:0'<{/if}>>
     <{include file='public/nav.tpl'}>
     <div class="container-fluid">
         <div class="row-fluid">

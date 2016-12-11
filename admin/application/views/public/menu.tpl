@@ -1,33 +1,16 @@
 
 <div id="sidebar">
     <ul>
-        <li class="submenu open"> <a href="#"><i class="icon icon-th"></i> <span>商品管理</span></a>
+        <{foreach $menu as $m}>
+        <li class="<{if isset($m['sub'])}> submenu <{/if}><{if $m['selected']}> open <{/if}>"> <a href="#"><i class="icon <{$m['icon']|default:'icon-bar-chart'}>"></i> <span><{$m['name']}></span></a>
             <ul>
-                <li class="active"><a href="<{'/product.html'|getBaseUrl}>">商品列表</a></li>
-                <li><a href="<{'/product/add.html'|getBaseUrl}>">添加商品</a></li>
-                <li><a href="<{'/product/cate.html'|getBaseUrl}>">商品分类</a></li>
-                <li><a href="<{'/product/verify.html'|getBaseUrl}>">商品审核</a></li>
-                <li><a href="<{'/product/recycle.html'|getBaseUrl}>">商品回收站</a></li>
-                <li><a href="<{'/product.html'|getBaseUrl}>">*收藏列表</a></li>
+                <{foreach $m['sub'] as $s}>
+                <li<{if $s['selected']}> class="active" <{/if}> ><a href="<{'/'|cat:$m['flagName']|cat:'/'|cat:$s['flagName']|cat:'.html'|getBaseUrl}>"><{$s['name']}></a></li>
+                <{/foreach}>
             </ul>
         </li>
-        <li class="submenu"> <a href="javascript:void;"><i class="icon icon-bar-chart"></i> <span>订单管理</span> </a>
-            <ul>
-                <li><a href="#">订单列表</a></li>
-                <li><a href="#">订单统计</a></li>
-                <li><a href="#">销售排行</a></li>
-            </ul>
-        </li>
-        <li class="submenu open"> <a href="javascript:void;"><i class="icon icon-th"></i> <span>资讯管理</span> </a>
-            <ul>
-                <li><a href="<{'/posts.html'|getBaseUrl}>">资讯列表</a></li>
-                <li><a href="<{'/posts/add.html'|getBaseUrl}>">资讯发布</a></li>
-                <li><a href="#">评论点赞</a></li>
-                <li><a href="#">评论审核</a></li>
-                <li><a href="#">*作家管理</a></li>
-                <li><a href="#">关注列表</a></li>
-            </ul>
-        </li>
+        <{/foreach}>
+        <!--
         <li class="submenu"> <a href="javascript:void;"><i class="icon icon-trophy"></i> <span>财务管理</span> </a>
             <ul>
                 <li><a href="#">个人账户</a></li>
@@ -51,5 +34,6 @@
                 <li><a href="#">短信设置</a></li>
             </ul>
         </li>
+        -->
     </ul>
 </div>

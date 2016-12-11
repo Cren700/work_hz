@@ -63,8 +63,8 @@
                                     <label class="control-label">封面图片</label>
                                     <div class="controls">
                                         <input type="hidden" value="<{$posts['Fpost_coverimage']|default:''}>" name="post_coverimage">
-                                        <img style="width: 200px; height:150px; <{if isset($posts['Fpost_coverimage']) && !$posts['Fpost_coverimage']}>display: none<{/if}>" src="<{$posts['Fpost_coverimage']|default:''}>" id="js-img-cover" alt="">
-                                        <input class="btn btn-danger js-btn-del-cover" style="padding-right:20px; <{if isset($posts['Fpost_coverimage']) && !$posts['Fpost_coverimage']}>display: none<{/if}>" type="button" value="删除"/>
+                                        <img style="width: 200px; height:150px; <{if !isset($posts['Fpost_coverimage']) || !$posts['Fpost_coverimage']}>display: none<{/if}>" src="<{$posts['Fpost_coverimage']|default:''}>" id="js-img-cover" alt="">
+                                        <input class="btn btn-danger js-btn-del-cover" style="padding-right:20px; <{if !isset($posts['Fpost_coverimage']) || !$posts['Fpost_coverimage']}>display: none<{/if}>" type="button" value="删除"/>
                                         <input type="file" id="file_upload">
                                     </div>
                                 </div>

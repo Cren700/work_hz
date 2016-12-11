@@ -51,6 +51,10 @@ class HZ_Controller extends CI_Controller
         $this->_user_id = $this->session->userdata('username');
         $this->smarty->assign('username', $this->_user_id);
         $this->smarty->assign('uid', $this->_uid);
+
+        // 目录结构
+        $menu = $this->getMenu() ? : array();
+        $this->smarty->assign('menu', $menu);
     }
 
     public function jump($url)
@@ -98,6 +102,171 @@ class HZ_Controller extends CI_Controller
         $this->pagination->initialize($config);
 
         return $this->pagination->create_links();
+    }
+
+    public function getMenu()
+    {
+        // 目录结构
+        $menu = array(
+            array(
+                'selected'  => '0',
+                'name'      => '用户管理',
+                'flagName'  => 'user',
+                'icon'      => 'icon-th',
+                'sub'       => array(
+                    array(
+                        'selected'  => '0',
+                        'name'      => '会员列表',
+                        'flagName'  => 'member',
+                    ),
+                    array(
+                        'selected'  => '0',
+                        'name'      => '管理员列表',
+                        'flagName'  => 'admin',
+                    ),
+                    array(
+                        'selected'  => '0',
+                        'name'      => '媒体会员列表',
+                        'flagName'  => 'medium',
+                    ),
+                    array(
+                        'selected'  => '0',
+                        'name'      => '商户列表',
+                        'flagName'  => 'merchant',
+                    ),
+                    array(
+                        'selected'  => '0',
+                        'name'      => '黑名单列表',
+                        'flagName'  => 'blacklist',
+                    ),
+                    array(
+                        'selected'  => '0',
+                        'name'      => '权限管理',
+                        'flagName'  => 'power',
+                    ),
+                    array(
+                        'selected'  => '0',
+                        'name'      => '角色管理',
+                        'flagName'  => 'role',
+                    )
+                )
+            ),
+            array(
+                'selected'  => '0',
+                'name'      => '商品管理',
+                'flagName'  => 'product',
+                'icon'      => 'icon-bar-chart',
+                'sub'       => array(
+                    array(
+                        'selected'  => '0',
+                        'name'      => '商品列表',
+                        'flagName'  => 'index',
+                    ),
+                    array(
+                        'selected'  => '0',
+                        'name'      => '添加商品',
+                        'flagName'  => 'add',
+                    ),
+                    array(
+                        'selected'  => '0',
+                        'name'      => '商品分类',
+                        'flagName'  => 'cate',
+                    ),
+                    array(
+                        'selected'  => '0',
+                        'name'      => '商品审核',
+                        'flagName'  => 'verify',
+                    ),
+                    array(
+                        'selected'  => '0',
+                        'name'      => '商品回收站',
+                        'flagName'  => 'recycle',
+                    ),
+                    array(
+                        'selected'  => '0',
+                        'name'      => '收藏列表',
+                        'flagName'  => 'collect',
+                    )
+                )
+            ),
+            array(
+                'selected'  => '0',
+                'name'      => '订单管理',
+                'flagName'  => 'order',
+                'icon'      => 'icon-trophy',
+                'sub'       => array(
+                    array(
+                        'selected'  => '0',
+                        'name'      => '订单列表',
+                        'flagName'  => 'index',
+                    ),
+                    array(
+                        'selected'  => '0',
+                        'name'      => '订单统计',
+                        'flagName'  => 'statistics',
+                    ),
+                    array(
+                        'selected'  => '0',
+                        'name'      => '销售排行',
+                        'flagName'  => 'sale',
+                    )
+                )
+            ),
+            array(
+                'selected'  => '0',
+                'name'      => '资讯管理',
+                'flagName'  => 'posts',
+                'icon'      => 'icon-bar-chart',
+                'sub'       => array(
+                    array(
+                        'selected'  => '0',
+                        'name'      => '资讯列表',
+                        'flagName'  => 'index',
+                    ),
+                    array(
+                        'selected'  => '0',
+                        'name'      => '资讯发布',
+                        'flagName'  => 'add'
+                    ),
+                    array(
+                        'selected'  => '0',
+                        'name'      => '评论点赞',
+                        'flagName'  => 'sale',
+                    ),
+                    array(
+                        'selected'  => '0',
+                        'name'      => '评论审核',
+                        'flagName'  => 'sale',
+                    ),
+                    array(
+                        'selected'  => '0',
+                        'name'      => '作家管理',
+                        'flagName'  => 'sale',
+                    ),
+                    array(
+                        'selected'  => '0',
+                        'name'      => '关注列表',
+                        'flagName'  => 'sale',
+                    )
+                )
+            ),
+        );
+
+        $rsegments = $this->uri->rsegments;
+        $cont = $rsegments[1];
+        $method = $rsegments[2];
+
+        foreach ($menu as &$m) {
+            if (strtolower($cont) ===$m['flagName']) {
+                $m['selected'] = 1;
+                foreach ($m['sub'] as &$s) {
+                    if (strtolower($method) === $s['flagName']) {
+                        $s['selected'] = 1;
+                    }
+                }
+            }
+        }
+        return $menu;
     }
 }
 

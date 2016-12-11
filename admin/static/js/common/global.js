@@ -3,7 +3,28 @@ if (typeof (HZ) == "undefined" || !HZ) {
 }
 
 HZ.Global = (function() {
-
+    // 退出登录
+    function _logout(){
+        HZ.Dialog.showMsg({
+            title: '温馨提示',
+            msg: '是否退出登录?',
+            type: 'confirm',
+            yesText: "确 定",
+            closeText: "关 闭",
+            btnConfirm: function(){
+                $.ajax({
+                    url: baseUrl + '/login/logout.html',
+                    dataType: 'JSON',
+                    success: function(res){
+                        window.location.href = res.data.url;
+                    }
+                })
+            }
+        })
+    }
+    return {
+        logout: _logout
+    }
 })();
 
 
