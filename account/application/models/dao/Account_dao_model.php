@@ -46,28 +46,45 @@ class Account_dao_model extends HZ_Model
         return $query->row_array();
     }
 
-    public function addDetail($data, $type = 'user')
+    public function addDetail($data)
     {
         $data = dbEscape($data);
-        return $this->account->insert($this->_sel_table($type), $data);
+        return $this->account->insert($this->_user_detail_table, $data);
     }
 
-    public function modifyDetail($where, $data, $type = 'user')
+    public function modifyDetail($where, $data)
     {
         $where = dbEscape($where);
         $data = dbEscape($data);
-        return $this->account->update($this->_sel_table($type), $data, $where);
+        return $this->account->update($this->_user_detail_table, $data, $where);
+    }
+
+    public function addAdminDetail($data)
+    {
+        $data = dbEscape($data);
+        return $this->account->insert($this->_admin_detail_table, $data);
+    }
+
+    public function modifyAdminDetail($where, $data)
+    {
+        $where = dbEscape($where);
+        $data = dbEscape($data);
+        return $this->account->update($this->_admin_detail_table, $data, $where);
     }
 
     public function getDetailByUserId($user_id, $type = 'user')
     {
-        $query = $this->account->get_where($this->_sel_table($type), array('Fuser_id' => $user_id));
+        $query = $this->account->get_where($this->_sel_detail_table($type), array('Fuser_id' => $user_id));
         return $query->row_array();
     }
 
-    public function _sel_table($type)
+    private function _sel_table($type)
     {
         return $type === 'admin' ? $this->_admin_table : $this->_user_table;
     }
 
+    private function _sel_detail_table($type)
+    {
+        return $type === 'admin' ? $this->_admin_detail_table: $this->_user_detail_table;
+    }
 }

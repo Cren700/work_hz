@@ -16,6 +16,7 @@
             <th>商家名称</th>
             <th>产品库存</th>
             <th>产品价格</th>
+            <th>创建时间</th>
             <th>更新时间</th>
             <th>状态</th>
             <th>操作</th>
@@ -30,7 +31,8 @@
                 <td><{$i['Fstore_id']}></td>
                 <td><{$i['Fproduct_num']}></td>
                 <td><{$i['Fproduct_price']}></td>
-                <td><{'Y-m-d H:i:s'|date:$i['Fupdate_time']}></td>
+                <td><{'Y-m-d H:i'|date:$i['Fcreate_time']}></td>
+                <td><{'Y-m-d H:i'|date:$i['Fupdate_time']}></td>
                 <td class="js-product-status"><{if $i['Fis_del']}>已删除<{elseif $i['Fproduct_status'] eq 1 }>待审核<{elseif $i['Fproduct_status'] eq 2}>已上架<{elseif $i['Fproduct_status'] eq 3}>下架<{else}>已完成<{/if}></td>
                 <td>
                     <{if $i['Fis_del']}>

@@ -22,13 +22,28 @@
                     <div class="widget-content nopadding">
                         <form action="#" method="get" class="form-horizontal">
                             <div class="control-group" style="padding: 10px">
-                                <div class="span4">
-                                    <label style="display: inline-block">产品ID</label>
-                                    <input type="text" name="product_id" placeholder="产品ID">
+                                <div class="span3">
+                                    <label style="display: inline-block">产品名称</label>
+                                    <input class="span6" type="text" name="product_name" placeholder="产品名称">
                                 </div>
-                                <div class="span4">
+                                <div class="span3">
+                                    <input type="text" data-date-format="yyyy-mm-dd" name="min_date"  class="datepicker span5" placeholder="开始时间">
+                                    <label style="display: inline-block"> - </label>
+                                    <input class="datepicker span5" data-date-format="yyyy-mm-dd" type="text" name="max_date" placeholder="结束时间">
+                                </div>
+                                <div class="span3">
+                                    <label style="display: inline-block">产品状态</label>
+                                    <select class="span8" name="status" id="category_id">
+                                        <option value="">请选择产品状态</option>
+                                        <option value="1">待审核</option>
+                                        <option value="2">已上架</option>
+                                        <option value="3">下架</option>
+                                        <option value="4">已完成</option>
+                                    </select>
+                                </div>
+                                <div class="span3">
                                     <label style="display: inline-block">产品分类</label>
-                                    <select name="category_id" id="category_id">
+                                    <select class="span8" name="category_id" id="category_id">
                                         <option value="">请选择产品分类</option>
                                         <{foreach $cate['list'] as $c}>
                                         <option value="<{$c.Fcategory_id}>"><{$c.Fcategory_name}></option>

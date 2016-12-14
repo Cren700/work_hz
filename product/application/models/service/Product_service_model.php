@@ -18,6 +18,7 @@ class Product_service_model extends HZ_Model
     {
         $res = array('code' => 0);
         $where = array('Fis_del' => '0');
+        $like = array();
 
         if (!empty($option['Fproduct_id'])) {
             $where['Fproduct_id'] = $option['Fproduct_id'];
@@ -31,10 +32,6 @@ class Product_service_model extends HZ_Model
             $where['Fstore_id'] = $option['Fstore_id'];
         }
 
-        if (!empty($option['Fproduct_name'])) {
-            $where['Fproduct_name'] = $option['Fproduct_name'];
-        }
-
         if (!empty($option['Fproduct_status'])) {
             $where['Fproduct_status'] = $option['Fproduct_status'];
         }
@@ -43,11 +40,23 @@ class Product_service_model extends HZ_Model
             $where['Fis_del'] = $option['Fis_del'];
         }
 
+        if (!empty($option['min_date'])) {
+            $where['Fcreate_time >= '] = strtotime($option['min_date']);
+        }
+
+        if (!empty($option['max_date'])) {
+            $where['Fcreate_time <= '] = strtotime($option['max_date'])+23*3600+3599;
+        }
+
+        if (!empty($option['Fproduct_name'])) {
+            $like['Fproduct_name'] = $option['Fproduct_name'];
+        }
+
         $page = $option['p'] ? : 1;
         $page_size = $option['page_size'];
 
-        $res['data']['count'] = $this->product_dao->productNum($where);
-        $res['data']['list'] = $this->product_dao->productList($where, $page, $page_size);
+        $res['data']['count'] = $this->product_dao->productNum($where, $like);
+        $res['data']['list'] = $this->product_dao->productList($where, $like, $page, $page_size);
 
         return $res;
     }

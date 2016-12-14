@@ -19,6 +19,8 @@ $config = array(
             'detail'                => '/account/detail',                // 用户详情
             'addDetail'             => '/account/addDetail',             // 添加用户详情
             'modifyDetail'          => '/account/modifyDetail',          // 修改用户详情
+            'addAdminDetail'        => '/account/addAdminDetail',             // 添加后台用户详情
+            'modifyAdminDetail'     => '/account/modifyAdminDetail',          // 修改后台用户详情
         ),
     ),
     'product' => array(

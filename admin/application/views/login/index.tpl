@@ -53,7 +53,7 @@
 </div>
 
 <script src="<{'plugin/jquery.min.js'|baseJsUrl}>"></script>
-<script src="<{'login.js'|baseJsUrl}>"></script>
+<script src="<{'login/login.js'|baseJsUrl}>"></script>
 </body>
 
 </html>

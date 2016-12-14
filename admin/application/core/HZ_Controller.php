@@ -69,6 +69,14 @@ class HZ_Controller extends CI_Controller
         exit();
     }
 
+    /**
+     * 分页
+     * @param $rows
+     * @param int $p
+     * @param int $pageSize
+     * @param string $url
+     * @return mixed
+     */
     public function page($rows, $p = 1, $pageSize = 10, $url = '')
     {
         $this->load->library('pagination');
@@ -104,6 +112,10 @@ class HZ_Controller extends CI_Controller
         return $this->pagination->create_links();
     }
 
+    /**
+     * 后台目录
+     * @return array
+     */
     public function getMenu()
     {
         // 目录结构
@@ -247,6 +259,80 @@ class HZ_Controller extends CI_Controller
                         'selected'  => '0',
                         'name'      => '关注列表',
                         'flagName'  => 'sale',
+                    )
+                )
+            ),
+            array(
+                'selected'  => '0',
+                'name'      => '财务管理',
+                'flagName'  => 'finance',
+                'icon'      => 'icon-trophy',
+                'sub'       => array(
+                    array(
+                        'selected'  => '0',
+                        'name'      => '个人账户',
+                        'flagName'  => 'index',
+                    ),
+                    array(
+                        'selected'  => '0',
+                        'name'      => '交易流水',
+                        'flagName'  => 'order'
+                    ),
+                    array(
+                        'selected'  => '0',
+                        'name'      => '支付方式',
+                        'flagName'  => 'paytype',
+                    )
+                )
+            ),
+            array(
+                'selected'  => '0',
+                'name'      => '广告推广管理',
+                'flagName'  => 'ad',
+                'icon'      => 'icon-tasks',
+                'sub'       => array(
+                    array(
+                        'selected'  => '0',
+                        'name'      => '广告列表',
+                        'flagName'  => 'index',
+                    ),
+                    array(
+                        'selected'  => '0',
+                        'name'      => '添加广告',
+                        'flagName'  => 'add'
+                    ),
+                    array(
+                        'selected'  => '0',
+                        'name'      => '推荐设置',
+                        'flagName'  => 'set',
+                    ),
+                    array(
+                        'selected'  => '0',
+                        'name'      => '*返利管理',
+                        'flagName'  => 'ret',
+                    ),
+                    array(
+                        'selected'  => '0',
+                        'name'      => '友情链接',
+                        'flagName'  => 'links',
+                    )
+                )
+            ),
+            array(
+                'selected'  => '0',
+                'name'      => '安全配置',
+                'flagName'  => 'set',
+                'icon'      => 'icon-info-sign',
+                'sub'       => array(
+                    array(
+                        'selected'  => '0',
+                        'name'      => '数据库配置',
+                        'flagName'  => 'add'
+                    ),
+                    array(
+                        'selected'  => '0',
+                        'name'      => '短信设置',
+                        'flagName'  => 'msg',
                     )
                 )
             ),

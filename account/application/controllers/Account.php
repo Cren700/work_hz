@@ -56,13 +56,13 @@ class Account extends BaseController {
     public function addAdmin()
     {
         $data = array();
-//        $data['Fuser_id'] = $this->input->post('user_id');
-//        $data['Fpasswd'] = $this->input->post('passwd');
-//        $data['Fnick_name'] = $this->input->post('nick_name');
+        $data['Fuser_id'] = $this->input->post('user_id');
+        $data['Fpasswd'] = $this->input->post('passwd');
+        $data['Fnick_name'] = $this->input->post('nick_name');
 
-        $data['Fuser_id'] = 'admin';
-        $data['Fpasswd'] = '123456';
-        $data['Fnick_name'] = 'aadmin';
+//        $data['Fuser_id'] = 'admin';
+//        $data['Fpasswd'] = '123456';
+//        $data['Fnick_name'] = 'aadmin';
         $data['Fuser_type'] = 1; // 用户类型 默认为4 (1、内部管理用户2、合作商户3、媒体用户4、普通用户)
         $data['Fcreate_time'] = time();
         $data['Fupdate_time']  = time();
@@ -89,13 +89,9 @@ class Account extends BaseController {
      */
     public function modifyPwdAdmin()
     {
-//        $data['Fuser_id'] = $this->input->post('user_id');
-//        $data['Fpasswd'] = $this->input->post('passwd');
-//        $data['new_passwd'] = $this->input->post('new_passwd');
-
-        $data['Fuser_id'] = 'admin';
-        $data['Fpasswd'] = '123456';
-        $data['new_passwd'] = '654321';
+        $data['Fuser_id'] = $this->input->post('user_id');
+        $data['Fpasswd'] = $this->input->post('passwd');
+        $data['new_passwd'] = $this->input->post('new_passwd');
         $res = $this->account_service_model->modifyPwd($data, 'admin');
         echo outputResponse($res);
     }
@@ -105,7 +101,8 @@ class Account extends BaseController {
      */
     public function detail()
     {
-        $data['Fuser_id'] = $this->input->get('user_id');
+        $data['Fuser_id'] = $this->input->get('id');
+        $data['type'] = $this->input->get('type') ? : 'user';
         $res = $this->account_service_model->detail($data);
         echo outputResponse($res);
     }
@@ -116,7 +113,7 @@ class Account extends BaseController {
     public function addDetail()
     {
         $data = array();
-        $data['Fuser_id'] = $this->_user_id;
+        $data['Fuser_id'] = $this->_uid;
         $data['Fnick_name'] = $this->input->post('nick_name');
         $data['Freal_name'] = $this->input->post('real_name');
         $data['Fcert_type'] = $this->input->post('cert_type');
@@ -155,8 +152,59 @@ class Account extends BaseController {
         $data['Fatte_status'] = $this->input->post('atte_status') ? : 0;
         $data['Fimage_path'] = $this->input->post('image_path');
         $data['Fupdate_time'] = time();
-        $where = array('Fuser_id' => $this->_user_id);
+        $where = array('Fuser_id' => $this->_uid);
         $res = $this->account_service_model->modifyDetail($where, $data);
+        echo outputResponse($res);
+    }
+
+    /**
+     * 添加后台用户详情
+     */
+    public function addAdminDetail()
+    {
+        $data = array();
+        $data['Fuser_id'] = $this->_uid;
+        $data['Freal_name'] = $this->input->post('real_name');
+        $data['Findustry'] = $this->input->post('industry');
+        $data['Fcert_type'] = $this->input->post('cert_type');
+        $data['Fcert_no'] = $this->input->post('cert_no');
+        $data['Flogo_path'] = $this->input->post('logo_path');
+        $data['Femail'] = $this->input->post('email');
+        $data['Fphone'] = $this->input->post('phone');
+        $data['Fcountry'] = $this->input->post('country');
+        $data['Faddress'] = $this->input->post('address');
+        $data['Fannex_path'] = $this->input->post('annex_path');
+        $data['Fremark'] = $this->input->post('remark');
+        $data['Fatte_status'] = $this->input->post('atte_status');
+        $data['Fcreate_time'] = time();
+        $data['Fupdate_time'] = time();
+        p($data);
+
+        $res = $this->account_service_model->addAdminDetail($data);
+        echo outputResponse($res);
+    }
+
+    /**
+     * 修改后台用户详情
+     */
+    public function modifyAdminDetail()
+    {
+        $data = array();
+        $data['Freal_name'] = $this->input->post('real_name');
+        $data['Findustry'] = $this->input->post('industry');
+        $data['Fcert_type'] = $this->input->post('cert_type');
+        $data['Fcert_no'] = $this->input->post('cert_no');
+        $data['Flogo_path'] = $this->input->post('logo_path');
+        $data['Femail'] = $this->input->post('email');
+        $data['Fphone'] = $this->input->post('phone');
+        $data['Fcountry'] = $this->input->post('country');
+        $data['Faddress'] = $this->input->post('address');
+        $data['Fannex_path'] = $this->input->post('annex_path');
+        $data['Fremark'] = $this->input->post('remark');
+        $data['Fatte_status'] = $this->input->post('atte_status');
+        $data['Fupdate_time'] = time();
+        $where = array('Fuser_id' => $this->_uid);
+        $res = $this->account_service_model->modifyAdminDetail($where, $data);
         echo outputResponse($res);
     }
 }

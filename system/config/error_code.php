@@ -19,6 +19,7 @@ $config = array(
     'account_error_3' => array( 'code' => 10003, 'msg' => '添加数据错误'),                 //添加数据错误
     'account_error_4' => array( 'code' => 10004, 'msg' => '请先登录'),                     //未登录
     'account_error_5' => array( 'code' => 10005, 'msg' => '操作出错'),                     //操作出错
+    'account_error_6' => array( 'code' => 10006, 'msg' => '不能重复添加用户详情'),                     //不能重复添加用户详情 
 
 
 

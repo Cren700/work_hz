@@ -16,12 +16,7 @@ class User_service_model extends HZ_Model
 
     public function detail()
     {
-        return $this->myCurl('account', 'detailAdmin', array('user_id' => $this->_user_id));
-    }
-
-    public function modifyPwd($data)
-    {
-        return $this->myCurl('account', 'modifyPwdAdmin', $data, true);
+        return $this->myCurl('account', 'detail', array('id' => $this->_uid, 'type' => 'admin'));
     }
 
     public function save($data)
@@ -29,9 +24,13 @@ class User_service_model extends HZ_Model
         $is_new = $data['is_new'];
         unset($data['is_new']);
         if ($is_new) {
-            return $this->myCurl('account', 'addDetail', $data, true);
+            $res = $this->myCurl('account', 'addAdminDetail', $data, true);
         } else {
-            return $this->myCurl('account', 'modifyDetail', $data, true);
+            $res = $this->myCurl('account', 'modifyAdminDetail', $data, true);
         }
+        if ($res['code'] === 0) {
+            $res['data']['url'] = getBaseUrl('/home.html');
+        }
+        return $res;
     }
 }

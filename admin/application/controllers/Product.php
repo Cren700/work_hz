@@ -17,10 +17,13 @@ class Product extends BaseControllor
     public function index()
     {
         $cate = $this->product_service->category();
+        $cssArr = array('datepicker.css');
         $jsArr = array(
+            'plugin/bootstrap-datepicker.js',
             'product/product.js'
         );
         $this->smarty->assign('cate', $cate['data']);
+        $this->smarty->assign('cssArr', $cssArr);
         $this->smarty->assign('jsArr', $jsArr);
         $this->smarty->display('product/index.tpl');
     }
@@ -30,11 +33,13 @@ class Product extends BaseControllor
         $option = array(
             'p' => $this->input->get('p') ? : 1 ,
             'page_size' => $this->input->get('n') ? : 10,
-            'product_id'   => $this->input->get('product_id') ? : '',
+            'product_name'   => $this->input->get('product_name') ? : '',
             'category_id' => $this->input->get('category_id') ? : '',
             'product_status' => $this->input->get('status') ? : '',
-            'is_del' => $this->input->get('is_del') ? : '',
             'store_id'  => $this->input->get('store_id') ? : $this->_uid,
+            'is_del' => $this->input->get('is_del') ? : '',
+            'min_date' => $this->input->get('min_date'),
+            'max_date' => $this->input->get('max_date'),
         );
         $cate = $this->product_service->category();
         $cate = isset($cate['data']['list']) ? $cate['data']['list'] : array();
@@ -202,10 +207,13 @@ class Product extends BaseControllor
     public function verify()
     {
         $cate = $this->product_service->category();
+        $cssArr = array('datepicker.css');
         $jsArr = array(
+            'plugin/bootstrap-datepicker.js',
             'product/product.js'
         );
         $this->smarty->assign('cate', $cate['data']);
+        $this->smarty->assign('cssArr', $cssArr);
         $this->smarty->assign('jsArr', $jsArr);
         $this->smarty->display('product/verify.tpl');
     }
@@ -216,10 +224,13 @@ class Product extends BaseControllor
     public function recycle()
     {
         $cate = $this->product_service->category();
+        $cssArr = array('datepicker.css');
         $jsArr = array(
+            'plugin/bootstrap-datepicker.js',
             'product/product.js'
         );
         $this->smarty->assign('cate', $cate['data']);
+        $this->smarty->assign('cssArr', $cssArr);
         $this->smarty->assign('jsArr', $jsArr);
         $this->smarty->display('product/recycle.tpl');
     }

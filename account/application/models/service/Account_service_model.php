@@ -157,7 +157,7 @@ class Account_service_model extends HZ_Model
         if (empty($data['Fuser_id'])) {
             $ret['code'] = 'system_error_2'; // 操作出错
         } else {
-            $res = $this->account_dao_model->getDetailByUserId($data['Fuser_id']);
+            $res = $this->account_dao_model->getDetailByUserId($data['Fuser_id'], $data['type']);
             $ret['data'] = $res;
         }
         return $ret;
@@ -186,8 +186,9 @@ class Account_service_model extends HZ_Model
             }
         }
 
-        if ($this->account_dao_model->getDetailByUserId($this->_user_id)) {
-            $ret['code'] = 'account_error_5'; // 已经存在用户详情
+        $user = $this->account_dao_model->getDetailByUserId($this->_uid);
+        if (!empty($user)) {
+            $ret['code'] = 'account_error_6'; // 已经存在用户详情
             return $ret;
         }
         $res = $this->account_dao_model->addDetail($data);
@@ -201,20 +202,76 @@ class Account_service_model extends HZ_Model
      * 修改用户详情
      * @param $where
      * @param $data
+     * @param $type 区分后台、用户
      * @return array|string
      */
-    public function modifyDetail($where, $data)
+    public function modifyDetail($where, $data, $type)
     {
         $ret = array('code' => 0);
         // 数据验证
         if (!$where['Fuser_id']) {
             return $ret['code'] = 'account_error_5';
         }
-        $res = $this->account_dao_model->modifyDetail($where, $data);
+        $res = $this->account_dao_model->modifyDetail($where, $data, $type);
         if (!$res) {
             $ret['code'] = 'account_error_3';
         }
         return $ret;
     }
 
+
+    /**
+     * 添加后台用户详情
+     * @param $data
+     * @return array
+     */
+    public function addAdminDetail($data)
+    {
+        $ret = array('code' => 0);
+        // 数据验证
+        $validationConfig = array(
+            array(
+                'value' => $data['Fuser_id'],
+                'rules' => 'required',
+                'field' => '用户名'
+            )
+        );
+        foreach ($validationConfig as $v) {
+            $resValidation = validationData($v['value'], $v['rules'], $v['field']);
+            if (!empty($resValidation)) {
+                return $resValidation;
+            }
+        }
+        $user = $this->account_dao_model->getDetailByUserId($this->_uid, 'admin');
+        if (!empty($user)) {
+            $ret['code'] = 'account_error_6'; // 已经存在用户详情
+            return $ret;
+        }
+
+        $res = $this->account_dao_model->addAdminDetail($data);
+        if (!$res) {
+            $ret['code'] = 'account_error_3';
+        }
+        return $ret;
+    }
+
+    /**
+     * 修改用户详情
+     * @param $where
+     * @param $data
+     * @return array|string
+     */
+    public function modifyAdminDetail($where, $data)
+    {
+        $ret = array('code' => 0);
+        // 数据验证
+        if (!$where['Fuser_id']) {
+            return $ret['code'] = 'account_error_5';
+        }
+        $res = $this->account_dao_model->modifyAdminDetail($where, $data);
+        if (!$res) {
+            $ret['code'] = 'account_error_3';
+        }
+        return $ret;
+    }
 }

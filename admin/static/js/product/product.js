@@ -4,6 +4,9 @@ if (typeof (HZ) == "undefined" || !HZ) {
 
 HZ.Product = (function() {
     function _init(){
+
+        $('.datepicker').datepicker();
+
         // 获取列表
         _getList();
 
@@ -116,14 +119,16 @@ HZ.Product = (function() {
 
     function _getList(p){
 
-        var product_id = $('input[name="product_id"]').val(),
+        var product_name = $('input[name="product_name"]').val(),
             cate_id = $('select[name="category_id"]').val(),
+            min_date = $('input[name="min_date"]').val(),
+            max_date = $('input[name="max_date"]').val(),
             is_del = $('input[name="is_del"]').val(),
-            status = $('input[name="status"]').val();
+            status = $('select[name="status"]').val() || $('input[name="status"]').val();
         p = p ? p : 1;
         $.ajax({
             url: baseUrl+'/product/query',
-            data: {p: p, product_id: product_id, category_id: cate_id, status: status, is_del: is_del},
+            data: {p: p, product_name: product_name, category_id: cate_id, min_date: min_date, max_date: max_date, status: status, is_del: is_del},
             dataType: 'HTML',
             type: 'GET',
             success: function(res){

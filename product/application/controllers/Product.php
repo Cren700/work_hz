@@ -26,9 +26,11 @@ class Product extends HZ_Controller
             'Fproduct_name' => $this->input->get('product_name'),
             'Fproduct_status' => $this->input->get('product_status'),
             'Fis_del' => $this->input->get('is_del'),
+            'Fstore_id' => $this->input->get('store_id'),
             'p' => $this->input->get('p') ? : 1,
             'page_size' => $this->input->get('page_size'),
-            'Fstore_id' => $this->input->get('store_id'),
+            'min_date' => $this->input->get('min_date'),
+            'max_date' => $this->input->get('max_date'),
         );
         $res = $this->product_service->query($option);
         echo outputResponse($res);
